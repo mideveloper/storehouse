@@ -1,0 +1,52 @@
+{
+  "name": "storehouse",
+  "version": "0.0.1",
+  "description": "oyster storehouse",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "bluebird": "~2.9.33",
+    "request": "~2.60.0",
+    "mongodb": "~2.0.36",
+    "knex": "~0.8.6",
+    "mysql": "~2.8.0",
+    "elasticsearch": "~5.0.0"
+  },
+  "devDependencies": {
+    "grunt-cli": "~0.1.11",
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "mocha": "~1.16.2",
+    "grunt-contrib-jshint": "~0.8.0",
+    "sinon": "~1.7.3",
+    "supertest": "~0.8.2",
+    "chai": "~1.8.1",
+    "chai-as-promised": "~4.1.0",
+    "grunt-mocha-test": "~0.8.1",
+    "jshint-stylish": "~0.1.5",
+    "grunt-newer": "~0.6.1",
+    "load-grunt-tasks": "~0.3.0",
+    "time-grunt": "~0.2.9",
+    "grunt-concurrent": "~0.4.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mideveloper/ephemeral"
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "cache",
+    "hepler"
+  ],
+  "author": {
+    "name": "mideveloper"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mideveloper/ephemeral/issues"
+  },
+  "homepage": "https://github.com/mideveloper/ephemeral"
+}
