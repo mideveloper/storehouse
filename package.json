@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bluebird": "~2.9.33",
+    "lodash": "~3.10.1",
     "request": "~2.60.0",
     "mongodb": "~2.0.36",
     "knex": "~0.8.6",
