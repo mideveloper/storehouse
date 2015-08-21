@@ -1,6 +1,6 @@
 {
   "name": "storehouse",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "oyster storehouse",
   "main": "./lib/index.js",
   "scripts": {
