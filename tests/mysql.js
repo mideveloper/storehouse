@@ -16,8 +16,8 @@ describe("MySql", function() {
             host: "localhost",
             port: "3306",
             db: "testMySqlModel",
-            uid: "dbuser",
-            pwd: "dbuser"
+            uid: "root",
+            pwd: ""
         });
         console.log("init-MySql");
         FunctionalTestModel = mysqlBaseModel.extend({
@@ -40,28 +40,28 @@ describe("MySql", function() {
             done();
         });
     });
-    
+
     it("find", function(done) {
         var insert_obj = {};
         insert_obj[idColumnName] = 1;
         insert_obj[nameColumnName] = "ftest1";
         insert_obj["search_column"] = "search me";
-    
+
         var insert_obj2 = {};
         insert_obj2[idColumnName] = 2;
         insert_obj2[nameColumnName] = "ftest2";
         insert_obj2["search_column"] = "search me";
-    
+
         var insert_obj3 = {};
         insert_obj3[idColumnName] = 3;
         insert_obj3[nameColumnName] = "ftest3";
         insert_obj3["search_column"] = "no search me 2";
-    
+
         var insert_obj4 = {};
         insert_obj4[idColumnName] = 4;
         insert_obj4[nameColumnName] = "ftest4";
         insert_obj4["search_column"] = "no search me 2";
-    
+
         return Promise.all([
             new FunctionalTestModel(insert_obj).save(),
             new FunctionalTestModel(insert_obj2).save(),

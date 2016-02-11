@@ -66,7 +66,7 @@ describe("Mongo", function() {
             });
         });
     });
-    
+
     it("pagedFind", function(done) {
         return new FunctionalTestModel().pagedFind({
             "search_column": "search me"
