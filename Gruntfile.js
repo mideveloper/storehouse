@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                 reporter: "dot"
             },
             all: {
-                src: ["tests/mongo.js", "tests/mysql.js"]
+                src: ["tests/mongo.js", "tests/mysql.js", "tests/es.js"]
             }
         },
 
