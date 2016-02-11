@@ -23,7 +23,7 @@ module.exports = function(grunt) {
                 ]
             }
         },
-        
+
         mochaTest: {
             options: {
                 globals: ["should"],
@@ -32,10 +32,10 @@ module.exports = function(grunt) {
                 reporter: "dot"
             },
             all: {
-                src: ["tests/mongo.js", "tests/mysql.js", "tests/es.js"]
+                src: ["tests/mongo.js", "tests/mysql.js"]
             }
         },
-        
+
         watch: {
             files: [
                 "Gruntfile.js",
@@ -43,13 +43,13 @@ module.exports = function(grunt) {
                 "lib/**/*.js",
                 "middleware/*.js",
                 "tests/**/*.js"
-                
+
             ],
             default: {
                 files: "<%= watch.files %>",
                 tasks: ["newer:jshint", "mochaTest"]
             }
-            
+
         }
     });
 
