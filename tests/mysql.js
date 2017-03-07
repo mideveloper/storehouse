@@ -17,7 +17,16 @@ describe("MySql", function() {
             port: "3306",
             db: "testMySqlModel",
             uid: "root",
-            pwd: ""
+            pwd: "",
+            debug: true,
+            replica: {
+                host: "localhost",
+                port: "3306",
+                db: "testMySqlModel",
+                uid: "root",
+                pwd: "",
+                debug: true
+            }
         });
         console.log("init-MySql");
         FunctionalTestModel = mysqlBaseModel.extend({
@@ -114,5 +123,86 @@ describe("MySql", function() {
             expect(output[nameColumnName]).to.equal("ftest1");
             done();
         });
+    });
+
+    it("fetch with raw client", function (done) {
+        return new FunctionalTestModel().getClient().from("test").where("id", 1).select([
+            idColumnName,
+            nameColumnName
+        ]).then(function (output) {
+            output = output[0];
+            expect(output[idColumnName]).to.equal(1);
+            expect(output[nameColumnName]).to.equal("ftest1");
+            done();
+        });
+    });
+
+    it("fetch with raw client with table reference", function (done) {
+        return new FunctionalTestModel().getClientWithTableReference().where("id", 1).select([
+            idColumnName,
+            nameColumnName
+        ]).then(function (output) {
+            output = output[0];
+            expect(output[idColumnName]).to.equal(1);
+            expect(output[nameColumnName]).to.equal("ftest1");
+            done();
+        });
+    });
+
+    it("fetch with read only raw client", function (done) {
+        return new FunctionalTestModel().getReadOnlyClient().from("test").where("id", 1).select([
+            idColumnName,
+            nameColumnName
+        ]).then(function (output) {
+            output = output[0];
+            expect(output[idColumnName]).to.equal(1);
+            expect(output[nameColumnName]).to.equal("ftest1");
+            done();
+        });
+    });
+
+    it("should be able to commit transactions", function (done) {
+        var id = null;
+        return new FunctionalTestModel().beginTransaction().then(function (trx) {
+            return new FunctionalTestModel().getClientWithTableReference().transacting(trx).returning("id").insert({
+                name: "Transacting",
+                search_column: "Transaction insert"
+            }).then(function (resp) {
+                id = resp[0];
+                return Promise.resolve();
+            }).then(function () {
+                return trx.commit();
+            }).then(function () {
+                return new FunctionalTestModel().getClientWithTableReference().where("id", id).select("name");
+            }).then(function (resp) {
+                console.log(resp);
+                expect(resp).to.have.length(1);
+                return new FunctionalTestModel().getClientWithTableReference().where("id", id).del();
+            }).then(function(){
+                done();
+            });
+        });
+    });
+
+    it("should be able to rollback transactions", function(done) {
+        var id = null;
+        return new FunctionalTestModel().beginTransaction()
+            .then(function(trx) {
+                return new FunctionalTestModel().getClientWithTableReference()
+                    .transacting(trx)
+                    .returning("id")
+                    .insert({
+                        name: "roll back transaction",
+                        search_column: "Transaction insert"
+                    }).then(function(resp) {
+                        id = resp[0];
+                        trx.rollback();
+                    }).then(function() {
+                        return new FunctionalTestModel().getClientWithTableReference().where("id", id).select("name");
+                    }).then(function(resp) {
+                        expect(resp.length).to.equal(0);
+                        done();
+                    });
+            });
     });
 });
