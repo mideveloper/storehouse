@@ -10,7 +10,7 @@
     "bluebird": "~3.2.2",
     "lodash": "~4.3.0",
     "request": "~2.69.0",
-    "mongodb": "~2.1.7",
+    "mongodb": "~2.2.29",
     "knex": "~0.10.0-rc1",
     "mysql": "~2.10.2",
     "elasticsearch": "~10.1.3"

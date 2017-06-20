@@ -11,7 +11,9 @@ describe("Mongo", function() {
         mongoBaseModel = mongo.initialize({
             host: "localhost",
             port: "27017",
-            db: "functionaltest"
+            db: "functionaltest",
+            user: "DBADMIN",
+            pass: "DBPASSWORD"
         });
         console.log("init-Mongo");
         FunctionalTestModel = mongoBaseModel.extend({
