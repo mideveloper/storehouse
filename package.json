@@ -11,8 +11,8 @@
     "lodash": "~4.3.0",
     "request": "~2.69.0",
     "mongodb": "~2.2.29",
-    "knex": "~0.10.0-rc1",
-    "mysql": "~2.10.2",
+    "knex": "0.13.0",
+    "mysql": "git://github.com/mysqljs/mysql#e3e123e9af7c0829a6c1417d911572a75b4a5f95",
     "elasticsearch": "~10.1.3"
   },
   "devDependencies": {
